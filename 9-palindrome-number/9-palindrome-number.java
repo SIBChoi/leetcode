@@ -1,32 +1,18 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        String[] strX = Integer.toString(x).split("");
+       if (x < 0) {
+           return false;
+       }
         
-        if (strX[0].equals("-")) {
-            return false;
+        int remain, original = x;
+        int reversed = 0;
+        
+        while(x > 0) {
+            remain = x % 10;
+            reversed = reversed * 10 + remain;
+            x /= 10;
         }
         
-        System.out.print(Arrays.toString(strX));
-        
-        boolean isPalindromFlag = true;
-        int left = 0;
-        int right = strX.length - 1;
-        
-        while (left < right) {
-            if(Integer.parseInt(strX[left]) != Integer.parseInt(strX[right])) {
-                isPalindromFlag = false;
-                break;
-            } else {
-                left++;
-                right--;
-            }
-        }
-        
-        if(left == right) {
-            isPalindromFlag = true;
-        }
-        
-        
-        return isPalindromFlag;
+        return original == reversed;
     }
 }
