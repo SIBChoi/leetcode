@@ -2,9 +2,14 @@ class Solution {
     public boolean containsDuplicate(int[] nums) {
         boolean result = false;
         
-        Arrays.sort(nums);
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] == nums[i + 1]) {
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for(int n : nums) {
+            map.put(n, map.getOrDefault(n, 0) + 1);
+        }
+        
+        for (Map.Entry<Integer, Integer> item : map.entrySet()) {
+            if (item.getValue() > 1) {
                 result = true;
                 break;
             }
