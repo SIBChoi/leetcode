@@ -3,18 +3,17 @@ class Solution {
         Map<Integer, Integer> map = new HashMap<>();
         int[] answer = new int[2];        
         
-        for (int i = 0; i < nums.length; i++) {
-            map.put(target - nums[i], i);
-        }
-        
         int idx = 0;
         for (int n : nums) {
-            if (map.containsKey(n) && map.get(n) != idx) {
-                answer[0] = idx;
-                answer[1] = map.get(n);
+            int sub = target - n;
+            if(map.containsKey(sub)) {
+                answer[0] = map.get(sub);
+                answer[1] = idx;
                 break;
+            } else {
+                map.put(n, idx);
+                idx++;
             }
-            idx++;
         }
         
         return answer;
