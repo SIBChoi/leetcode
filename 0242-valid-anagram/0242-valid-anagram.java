@@ -6,18 +6,27 @@ class Solution {
         
         boolean anagram = true;
         
-        String[] s1 = s.split("");
-        String[] s2 = t.split("");
+        Map<String, Integer> map = new HashMap<>();
         
-        Arrays.sort(s1);
-        Arrays.sort(s2);
+        for (String s1 : s.split("")) {
+            map.put(s1, map.getOrDefault(s1, 0) + 1);
+        }
         
-        for (int i = 0; i < s1.length; i++) {
-            if (!s1[i].equals(s2[i])) {
+        for (String t1 : t.split("")) {
+            if (!map.containsKey(t1)) {
                 anagram = false;
                 break;
+            } else {
+                map.put(t1, map.getOrDefault(t1, 0) - 1);
+                
+                if (map.get(t1) < 0) {
+                    anagram = false;
+                    break;
+                }
             }
         }
+        
+        
         
         return anagram;
     }
