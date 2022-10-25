@@ -4,15 +4,13 @@ class Solution {
             return true;
         }
         
-        String[] sArr = s.split("");
-        String[] tArr = t.split("");
         boolean answer = false;
         
         int idx2 = 0;
-        for (int i = 0; i < tArr.length; i++) {
-            if (sArr[idx2].equals(tArr[i])) {
+        for (int i = 0; i < t.length(); i++) {
+            if (s.charAt(idx2) == t.charAt(i)) {
                 idx2++;
-                if (idx2 == sArr.length) {
+                if (idx2 == s.length()) {
                     answer = true;
                     break;
                 }
